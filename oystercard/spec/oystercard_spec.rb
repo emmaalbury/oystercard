@@ -23,7 +23,30 @@ describe Oystercard do
 
     describe '#deduct' do
       it 'deducts fare amount from balance' do
+        subject.top_up(20)
         expect{ subject.deduct 10 }.to change{ subject.balance }.by -10
+      end
+    end
+  end
+
+
+  context "declares state of use" do
+
+    describe '#touch_in?' do
+      it "returns true if card is in use" do
+      expect(subject.touch_in?).to be true
+      end
+    end
+
+    describe '#touch_out?' do
+      it "returns true if card is not in use" do
+      expect(subject.touch_out?).to be true
+      end
+    end
+
+    describe '#in_journey?' do
+      it "returns true if card is not in use" do
+      expect(subject.in_journey?).to be true
       end
     end
   end
@@ -31,3 +54,6 @@ end
 
 # topup = Oystercard.new(20)
 # expect(topup.top_up(amount)).to eq(20)
+
+
+#      allow(subject).to receive(:touch_in?).and_return true
