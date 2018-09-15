@@ -60,27 +60,5 @@ describe Oystercard do
           oys = Oystercard.new
           expect { oys.touch_in("station") }.to raise_error("You're not passing with THAT balance")
       end
-
-      it "remembers entry station after touch in" do
-        card.top_up(5)
-        card.touch_in("Manor House")
-        expect(card.beginning_station).to eq "Manor House"
-      end
-
-      # it "touch_out accepts exit station as argument" do
-      #   card.touch_out("angel")
-      #   expect(card.touch_out).to eq "angel"
-      # end
-
-      it "begins with an empty list for journeys" do
-        expect(card.store_journey).to eq []
-      end
-
-      it "stores journey in a hash in touch_out" do
-        card.top_up(5)
-        card.touch_in("Hammersmith")
-        card.touch_out("Liverpool")
-        expect(card.store_journey).to eq([{ entry_station: "Hammersmith", exit_station: "Liverpool" }])
-      end
     end
 end
